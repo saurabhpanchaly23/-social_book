@@ -1,33 +1,51 @@
 from django.shortcuts import render
-
-# Create your views here.
+from .forms import CustomUserCreationForm
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import  authenticate, login
-# Create your views here.
+from django.contrib import  messages
+from .models import CustomUser
+from django.contrib.auth.forms import AuthenticationForm
+from .forms import BookUploadForm
 
-def Login(request):
-    if request.method=='POST':
-        uname= request.POST.get('username')
+def user_login(request):
+    if request.method == 'POST':
+        email= request.POST.get('email')
         pwd=request.POST.get('password')
-        user = authenticate(request, username=uname, password=pwd)
+        user = authenticate(request, email=email, password=pwd)
         if user is not None:
             login(request,user)
-            # return redirect('home')
+            return redirect('index')
         else:
             return HttpResponse("Invalid Credentials")
-    return render (request, 'login.html')
+    return render (request, 'Login.html')
 
-def Register(request):
-    if request.method=='POST':
-        uname = request.POST.get('username')
-        email = request.POST.get('email')
-        pass1 = request.POST.get('password1')
-        pass2 = request.POST.get('password2')
-        if pass1!=pass2:
-            return HttpResponse("Password Missmatched")
-        else:
-            my_user = User.objects.create_user(uname,email,pass1)
-            my_user.save()
-            return redirect('login')     
-    return render (request, 'Register.html')
+def register(request):
+    if request.method == 'POST':
+        form= CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email=form.cleaned_data['email']
+            messages.success(request, f'Account created for {email}!')
+            return redirect('login')
+    else:
+        form= CustomUserCreationForm()
+    return render (request, 'register.html', {'form': form})
+    
+def index(request):
+    return render (request,'index.html')  
+
+def authers_sellers(request):
+    auther = CustomUser.objects.filter(public_visibility=True, user_type='Auther')
+    sellers = CustomUser.objects.filter(public_visibility=True, user_type='Sellers')
+    return render(request, 'index.html', {'authors': auther, 'sellers': sellers})
+
+def upload_book(request):
+    if request.method == 'POST':
+        form = BookUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('upload_books')
+    else:
+        form = BookUploadForm()
+    return render(request, 'upload_books.html', {'form': form})
