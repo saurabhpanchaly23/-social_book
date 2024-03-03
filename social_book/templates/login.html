@@ -6,19 +6,28 @@
 	<meta charset="utf-8">
 	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
 
+	
+
 	<!-- Site favicon -->
+	{% comment %} <link rel="apple-touch-icon" sizes="180x180" href="vendors/images/apple-touch-icon.png"> {% endcomment %}
 	<link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/apple-touch-icon.png' %}">
-	<link rel="icon" type="image/png" sizes="32x32" href="{% static '/images/favicon-32x32.png' %}">
-	<link rel="icon" type="image/png" sizes="16x16" href="{% static '/images/favicon-16x16.png' %}">
+	{% comment %} <link rel="icon" type="image/png" sizes="32x32" href="vendors/images/favicon-32x32.png"> {% endcomment %}
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/favicon-32x32.png' %}">
+	{% comment %} <link rel="icon" type="image/png" sizes="16x16" href="vendors/images/favicon-16x16.png"> {% endcomment %}
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static '/images/favicon-16x16.png' %}">
 	<!-- Mobile Specific Metas -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="{% static '/styles/core.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static '/styles/icon-font.min.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static '/styles/style.css' %}">
+	{% comment %} <link rel="stylesheet" type="text/css" href="vendors/styles/core.css"> {% endcomment %}
+	<link rel="stylesheet" href="{% static 'styles/core.css' %}">
+	{% comment %} <link rel="stylesheet" type="text/css" href="vendors/styles/icon-font.min.css"> {% endcomment %}
+	<link rel="stylesheet" href="{% static 'styles/icon-font.min.css' %}">
+	{% comment %} <link rel="stylesheet" type="text/css" href="vendors/styles/style.css"> {% endcomment %}
+	<link rel="stylesheet" href="{% static 'styles/style.css' %}">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
@@ -35,7 +44,7 @@
 		<div class="container-fluid d-flex justify-content-between align-items-center">
 			<div class="brand-logo">
 				<a href="login.html">
-					{% comment %} <img src="vendors/images/deskapp-logo.svg" alt=""> {% endcomment %}
+					{% comment %} <img src="/static/images/deskapp-logo.svg" alt=""> {% endcomment %}
 					<img src="{% static '/images/deskapp-logo.svg' %}" alt="">
 				</a>
 			</div>
@@ -50,7 +59,8 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-md-6 col-lg-7">
-					<img src="{% static '/images/login-page-img.png'%}" alt="">
+					{% comment %} <img src="vendors/images/login-page-img.png" alt=""> {% endcomment %}
+					<img src="{% static '/images/login-page-img.png' %}" alt="">
 				</div>
 				<div class="col-md-6 col-lg-5">
 					<div class="login-box bg-white box-shadow border-radius-10">
@@ -62,13 +72,15 @@
 								<div class="btn-group btn-group-toggle" data-toggle="buttons">
 									<label class="btn active">
 										<input type="radio" name="options" id="admin">
-										<div class="icon"><img src="{% static '/images/briefcase.svg'%}" class="svg" alt=""></div>
+										{% comment %} <div class="icon"><img src="vendors/images/briefcase.svg" class="svg" alt=""></div> {% endcomment %}
+										<div class="icon"><img src="{% static '/images/briefcase.svg' %}" class="svg" alt=""></div>
 										<span>I'm</span>
 										Manager
 									</label>
 									<label class="btn">
 										<input type="radio" name="options" id="user">
-										<div class="icon"><img src="{% static '/person.svg' %} class="svg" alt=""></div>
+										{% comment %} <div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div> {% endcomment %}
+										<div class="icon"><img src="{% static '/images/person.svg' %}" class="svg" alt=""></div>
 										<span>I'm</span>
 										Employee
 									</label>
@@ -119,9 +131,13 @@
 		</div>
 	</div>
 	<!-- js -->
-	<script src="{% scripts '/core.js'%}"></script>
-	<script src="{% scripts '/scripts/script.min.js'%}"></script>
-	<script src="{% scripts '/scripts/process.js'%}"</script>
-	<script src="{% scripts '/layout-settings.js'%}"</script>
+	{% comment %} <script src="vendors/scripts/core.js"></script> {% endcomment %}
+	<script src="{% static '/scripts/core.js' %}"></script>
+	{% comment %} <script src="vendors/scripts/script.min.js"></script> {% endcomment %}
+	<script src="{% static '/scripts/script.min.js' %}"></script>
+	{% comment %} <script src="vendors/scripts/process.js"></script> {% endcomment %}
+	<script src="{% static '/scripts/process.js' %}"></script>
+	{% comment %} <script src="vendors/scripts/layout-settings.js"></script> {% endcomment %}
+	<script src="{% static '/scripts/layout-settings.js' %}"></script>
 </body>
 </html>
