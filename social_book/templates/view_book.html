@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authers and Sellers</title>
-    {% comment %} <style>
+    <title>Authors and Sellers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -30,43 +30,27 @@
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-    </style> {% endcomment %}
+    </style>
+
 </head>
 <body>
-    <div style="width: 30%;">
-    <h3>All Authors with public visibilty On</h3>
-    <table border="2px">
-        <tr>
-            <th>name</th>
-            <th>city</th>
-            <th>age</th>
-        </tr>
-        {% for auth in authers %}
-        <tr>
-            
-                <td>{{ auth.full_name }}</td>
-                <td>{{ auth.city }}</td>
-           
-        </tr>
-         {% endfor %}
-    </table>
-    </div>
-
     <br>
-    <div style="width: 30%;">
-    <h3>All Sellers with public visibilty On</h3>
+  <div style="width: 30%; margin: 0 auto; text-align: center;">
+    <h3>View Books</h3>
     <table border="2px">
         <tr>
-            <th>name</th>
-            <th>city</th>
-            <th>age</th>
+            <th>Book name</th>
+            <th>Discription</th>
+            <th>Publish year</th>
+            <th>PDF file</th>
         </tr>
-        {% for sell in sellers %}
+        {% for books in view_books %}
         <tr>
             
-                <td>{{ sell.full_name }}</td>
-                <td>{{ sell.city }}</td>
-                <td>{{ sell.age }}</td>
+                <td>{{ books.title }}</td>
+                <td>{{ books.description }}</td>
+                <td>{{ books.year_publish }}</td>
+                <td>{{ books.file }}</td>
            
         </tr>
          {% endfor %}

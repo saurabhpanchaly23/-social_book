@@ -25,8 +25,10 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('login/', views.user_login, name='login'),
     path('index/', views.index, name='index'),
-    path('Books/', views.upload_book, name='upload_books'),
-    # path('auther_Sellers/', views.authers_sellers, name= 'auther_sellers'),
+    path('authors/', views.authors, name='authors'),
+    path('sellers/', views.sellers, name='sellers'),
+    path('Book/', views.Book, name='Book'),
+    path('View_book/', views.view_book, name='view_book'),
 ]
 if settings.DEBUG:
     urlpatterns+=static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

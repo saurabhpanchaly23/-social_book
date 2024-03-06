@@ -7,6 +7,7 @@ from django.contrib import  messages
 from .models import CustomUser
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import BookUploadForm
+from .models import CustomUser, Book
 
 def user_login(request):
     if request.method == 'POST':
@@ -31,21 +32,29 @@ def register(request):
     else:
         form= CustomUserCreationForm()
     return render (request, 'register.html', {'form': form})
-    
+
 def index(request):
-    return render (request,'index.html')  
+    return render (request, 'index.html')
 
-def authers_sellers(request):
-    auther = CustomUser.objects.filter(public_visibility=True, user_type='Auther')
-    sellers = CustomUser.objects.filter(public_visibility=True, user_type='Sellers')
-    return render(request, 'index.html', {'authors': auther, 'sellers': sellers})
+def authors(request):
+    author = CustomUser.objects.filter(public_visibility=True,user_type='Auther')
+    return render(request, 'authors.html', {'author':author })
 
-def upload_book(request):
+def sellers(request):
+    Sellers = CustomUser.objects.filter(public_visibility=True,user_type='Sellers')
+    return render(request, 'sellers.html', {'Sellers':Sellers })
+
+def Book(request):
     if request.method == 'POST':
         form = BookUploadForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('upload_books')
+            messages.success(request, 'Book uploaded successfully!')
+            return redirect('upload_book')
     else:
         form = BookUploadForm()
-    return render(request, 'upload_books.html', {'form': form})
+    return render(request, 'upload_book.html', {'form': form})
+
+def view_book(request):
+    view_books = Book.objects.filter(visibility=True)
+    return render(request, 'view_book.html', {'view_books': view_books})
