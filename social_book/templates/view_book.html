@@ -39,19 +39,17 @@
     <h3>View Books</h3>
     <table border="2px">
         <tr>
-            <th>Book name</th>
-            <th>Discription</th>
-            <th>Publish year</th>
-            <th>PDF file</th>
-        </tr>
+            <th>title</th>
+            <th>cost</th>
+            <th>author</th>
+            <th>file</th>
+            </tr>
         {% for books in view_books %}
         <tr>
-            
                 <td>{{ books.title }}</td>
-                <td>{{ books.description }}</td>
-                <td>{{ books.year_publish }}</td>
+                <td>{{ books.cost }}</td>
+                <td>{{ books.author }}</td>
                 <td>{{ books.file }}</td>
-           
         </tr>
          {% endfor %}
     </table>

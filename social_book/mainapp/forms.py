@@ -27,7 +27,6 @@ class CustomUserCreationForm(forms.ModelForm):
             'class':'form-control'
         })
     )
-    
     class Meta:
         model = CustomUser
         fields = ['email', 'user_name', 'full_name', 'gender', 'user_type', 'city', 'state', 'password', 'public_visibility', ]
@@ -46,4 +45,4 @@ class CustomUserCreationForm(forms.ModelForm):
 class BookUploadForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'file', ]
+        fields = ['title', 'author', 'cost', 'file', 'visibility']

@@ -34,14 +34,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
        
-          
     def __str__(self):
       return self.email
         
 class Book(models.Model):
     title = models.CharField(max_length=100)
+    cost=models.IntegerField( blank=True, null=True)  # price of the book
     author = models.CharField(max_length=100)
-    file = models.FileField(upload_to='Book/')  # Assuming you want to upload PDF files
+    file = models.FileField(upload_to='Book/')  # Assuming you want to upload PDF 
+    visibility=models.BooleanField(default=True)
     
     def __str__(self):
         return self.title

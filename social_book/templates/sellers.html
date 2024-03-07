@@ -34,7 +34,6 @@
 
 </head>
 <body>
-
     <br>
     <div style="width: 30%; margin: 0 auto; text-align: center;">
     <h3>Sellers</h3>
@@ -42,15 +41,11 @@
         <tr>
             <th>Name</th>
             <th>City</th>
-            <th>Age</th>
         </tr>
         {% for sell in Sellers %}
         <tr>
-            
                 <td>{{ sell.full_name }}</td>
                 <td>{{ sell.city }}</td>
-                <td>{{ sell.age }}</td>
-           
         </tr>
          {% endfor %}
     </table>

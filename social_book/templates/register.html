@@ -157,17 +157,17 @@
 												{% comment %} <input type="text" class="form-control"> {% endcomment %}
 												{{ form.state }}
 											</div>
-											<div class="form-check"><br><br><br>
-												{% comment %} <input class="form-check-input" type="checkbox" id="public_visibility" name="public_visibility"> {% endcomment %}
-												<label class="form-check-label" for="public_visibility">Public Visibility</label>
-												{{ form.public_visibility }}	
+											<div class="form-check">
+												<!-- <input class="form-check-input" type="checkbox" id="public_visibility" name="public_visibility"> -->
+												<label class="form-check-label" for="public_visibility">Public Visibility</label><br>
+												{{ form.public_visibility }}
 											</div>
 											{% csrf_token %}
-											<div class="custom-control custom-checkbox mt-4">
+											{% comment %} <div class="custom-control custom-checkbox mt-4">
 												<input type="checkbox" class="custom-control-input" id="customCheck1">
 												<label class="custom-control-label" for="customCheck1"></label>
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</div>	
+												{% comment %} <button type="submit" class="btn btn-primary">Submit</button> {% endcomment %}
+											{% comment %} </div>	 = {% endcomment %}
 										</div>
 									</div>
 								</section>
