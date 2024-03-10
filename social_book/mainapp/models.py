@@ -5,8 +5,9 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-
+from sqlalchemy import create_engine
 from .managers import CustomUserManager
+engine = create_engine('postgresql://root:root@localhost/king')
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     gender_choice = [
@@ -35,7 +36,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomUserManager()
        
     def __str__(self):
-      return self.email
+      return self.emai
         
 class Book(models.Model):
     title = models.CharField(max_length=100)

@@ -30,6 +30,32 @@
 
 		gtag('config', 'UA-119386393-1');
 	</script>
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
 	<!-- <div class="pre-loader">
@@ -154,7 +180,7 @@
 						<span class="user-icon">
 							<img src="/static/images/photo1.jpg" alt="">
 						</span>
-						<span class="user-name">Ross C. Lopez</span>
+						<span class="user-name">social_book</span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
 						<a class="dropdown-item" href="profile.html"><i class="dw dw-user1"></i> Profile</a>
@@ -266,6 +292,26 @@
 							<li><a href="index2.html">Dashboard style 2</a></li>
 						</ul>
 					</li>
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-user"></span> <span class="mtext">Users</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="{% url 'authors' %}">Authors</a></li>
+							<li><a href="{% url 'seller' %}">Sellers</a></li>
+						</ul>
+					</li>
+
+					
+					<li class="dropdown">
+						<a href="javascript:;" class="dropdown-toggle">
+							<span class="micon dw dw-book"></span><span class="mtext">Manage Books</span>
+						</a>
+						<ul class="submenu">
+							<li><a href="{% url 'upload_book' %}">Upload Books</a></li>
+							<li><a href="{% url 'view_book' %}">View Books</a></li>
+						</ul>
+					</li>	
 					<li class="dropdown">
 						<a href="javascript:;" class="dropdown-toggle">
 							<span class="micon dw dw-edit2"></span><span class="mtext">Forms</span>
@@ -453,14 +499,14 @@
 						<img src="/static/images/banner-img.png" alt="">					</div>
 					<div class="col-md-8">
 						<h4 class="font-20 weight-500 mb-10 text-capitalize">
-							Welcome back <div class="weight-600 font-30 text-blue">Johnny Brown!</div>
+							Welcome <div class="weight-600 font-30 text-blue">DeskApp</div>
 						</h4>
-						<p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+						{% comment %} <p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p> {% endcomment %}
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-xl-3 mb-30">
+				{% comment %} <div class="col-xl-3 mb-30">
 					<div class="card-box height-100-p widget-style1">
 						<div class="d-flex flex-wrap align-items-center">
 							<div class="progress-data">
@@ -511,53 +557,52 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> {% endcomment %}
 			</div>
 			<div class="row">
-				<div class="col-xl-8 mb-30">
+				{% comment %} <div class="col-xl-8 mb-30">
 					<div class="card-box height-100-p pd-20">
 						<h2 class="h4 mb-20">Activity</h2>
 						<div id="chart5"></div>
 					</div>
-				</div>
-				<div class="col-xl-4 mb-30">
-					<div class="card-box height-100-p pd-20">
+				</div> {% endcomment %}
+				{% comment %} <div class="col-xl-4 mb-30"> {% endcomment %}
+					{% comment %} <div class="card-box height-100-p pd-20">
 						<h2 class="h4 mb-20">Lead Target</h2>
 						<div id="chart6"></div>
-					</div>
-				</div>
+					</div> {% endcomment %}
+				{% comment %} </div> {% endcomment %}
 			</div>
-			<div class="card-box mb-30">
-				<h2 class="h4 pd-20">Best Selling Products</h2>
-
-
-				<table class="data-table table nowrap">
+			<div>
+				<table>
 					<thead>
-						<tr>
-							<th class="table-plus datatable-nosort">Books</th>
-							<th>Title</th>
-							<th>Price</th>
-							<th>cost</th>
-							<th class="datatable-nosort"></th>
-						</tr>
+						<th><h4>Title</h4></th>
+						<th><h4>Cost</h4></th>	
+						<th><h4>Author</h4></th>
+						<th><h4>File</h4></th>
+						<th><h4>Download Book<h4></th>
 					</thead>
-					<tbody>
-						<tbody>
-							{% for book in books %}
-							<tr>
-								<td>{{ book.title }}</td>
-								<td>{{ book.price }}</td>
-								<td>{{ book.image }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-						</tr>
-					</tbody>
+					{% for books in view_books %}
+					<tr>
+						
+							<td>{{ books.title }}</td>
+							<td>{{ books.cost }}</td>
+							<td>{{ books.author }}</td>
+							<td>{{ books.file }}</td>
+					<td>
+							{% if books.file %}
+							<a href="{{ books.file.url }}" target="_blank">View / Download PDF</a>
+							{% else %}
+							N/A
+							{% endif %}
+					</td>
+					{% endfor %}
+					</tr>	
 				</table>
 			</div>
-			<div class="footer-wrap pd-20 mb-20 card-box">
+			{% comment %} <div class="footer-wrap pd-20 mb-20 card-box">
 				DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-			</div>
+			</div> {% endcomment %}
 		</div>
 	</div>
 	<!-- js -->

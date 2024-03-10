@@ -5,7 +5,7 @@
 <head>
 	<!-- Basic Page Info -->
 	<meta charset="utf-8">
-	<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+	<title>Register -social_book</title>
 
 	<!-- Site favicon -->
 	{% comment %} <link rel="apple-touch-icon" sizes="180x180" href="static/images/apple-touch-icon.png"> {% endcomment %}
@@ -150,6 +150,7 @@
 													{{ form.city }}	
 											</div>
 										</div>
+										{% csrf_token %}
 
 										<div class="form-group row">
 											<label class="col-sm-4 col-form-label">State</label>
@@ -157,17 +158,18 @@
 												{% comment %} <input type="text" class="form-control"> {% endcomment %}
 												{{ form.state }}
 											</div>
-											<div class="form-check">
-												<!-- <input class="form-check-input" type="checkbox" id="public_visibility" name="public_visibility"> -->
-												<label class="form-check-label" for="public_visibility">Public Visibility</label><br>
-												{{ form.public_visibility }}
+											<div class="form-check"><br><br>
+												{% comment %} <input class="form-check-input" type="checkbox" id="public_visibility" name="public_visibility"> {% endcomment %}
+												<label class="form-check-label">Public Visibility</label>			
+												{{ form.public_visibility }}	
 											</div>
-											{% csrf_token %}
-											{% comment %} <div class="custom-control custom-checkbox mt-4">
-												<input type="checkbox" class="custom-control-input" id="customCheck1">
-												<label class="custom-control-label" for="customCheck1"></label>
-												{% comment %} <button type="submit" class="btn btn-primary">Submit</button> {% endcomment %}
-											{% comment %} </div>	 = {% endcomment %}
+											
+											<div class="custom-control custom-checkbox mt-4"><br>
+												{% comment %} <input type="checkbox" class="custom-control-input" id="customCheck1"> {% endcomment %}
+												{% comment %} <label class="custom-control-label" for="customCheck1"></label> {% endcomment %}
+
+												<button type="submit" class="btn btn-primary">Submit</button>
+											</div>	
 										</div>
 									</div>
 								</section>
@@ -182,7 +184,6 @@
 													<option value="1">Option 1</option>
 													<option value="2">Option 2</option>
 													<option value="3">Option 3</option>
-													
 												</select> {% endcomment %}
 												{% comment %} {{ form.credit_card_type}}
 											{% comment %} </div> {% endcomment %} 
@@ -284,22 +285,22 @@
 											<input type="submit" value="submit">
 										</div> {% endcomment %}
 										<button type="button" id="success-modal-btn" hidden data-toggle="modal" data-target="#success-modal" data-backdrop="static">Launch modal</button>
-	<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered max-width-400" role="document">
-			<div class="modal-content">
-				<div class="modal-body text-center font-18">
-					<h3 class="mb-20">Form Submitted!</h3>
-					<div class="mb-30 text-center"><img src="vendors/images/success.png"></div>
-					<div class="mb-30 text-center"><img src="{% static '/images/success.png' %}"></div>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				</div>
-				<div class="modal-footer justify-content-center">
-					<a href="{% url 'login' %}" class="btn btn-primary">Done</a>
-					
-				</div>
-			</div>
-		</div>
-	</div>
+										<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+											<div class="modal-dialog modal-dialog-centered max-width-400" role="document">
+												<div class="modal-content">
+													{% comment %} <div class="modal-body text-center font-18">
+														<h3 class="mb-20">Form Submitted!</h3>
+														<div class="mb-30 text-center"><img src="vendors/images/success.png"></div>
+														<div class="mb-30 text-center"><img src="{% static '/images/success.png' %}"></div>
+														Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+													</div> {% endcomment %}
+													<div class="modal-footer justify-content-center">
+														<a href="{% url 'login' %}" class="btn btn-primary">Done</a>
+														
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</section>
 							</form>

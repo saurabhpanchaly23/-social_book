@@ -37,19 +37,25 @@
     <br>
   <div style="width: 30%; margin: 0 auto; text-align: center;">
     <h3>View Books</h3>
-    <table border="2px">
-        <tr>
-            <th>title</th>
-            <th>cost</th>
-            <th>author</th>
-            <th>file</th>
-            </tr>
+    <table border>
+            <th>Title</th>
+            <th> cost</th>
+            <th>authors</th>
+            <th>Download Book</th>
         {% for books in view_books %}
         <tr>
+                {% comment %} <td><img src="{{ books.image.url }}"></td> {% endcomment %}
                 <td>{{ books.title }}</td>
                 <td>{{ books.cost }}</td>
                 <td>{{ books.author }}</td>
-                <td>{{ books.file }}</td>
+                <td>{{ books.file.url }}
+                {% comment %} <td>{{ books.year_publish }}</td> {% endcomment %}
+                    {% if books.file %}
+                    <a href="{{ books.file.url }}" target="_blank">View / Download PDF</a>
+                    {% else %}
+                    N/A
+                    {% endif %}
+                </td>
         </tr>
          {% endfor %}
     </table>

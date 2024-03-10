@@ -50,7 +50,7 @@
 			</div>
 			<div class="login-menu">
 				<ul>
-					<li><a href="register.html">Register</a></li>
+					<li><a href="{% url 'register' %}" >Register</a></li>
 				</ul>
 			</div>
 		</div>
@@ -67,45 +67,43 @@
 						<div class="login-title">
 							<h2 class="text-center text-primary">Login To DeskApp</h2>
 						</div>
-						<form  method="post" action=''>	
+						<form action="" Method="post">
 							{% csrf_token %}
-							{% comment %} <div class="select-role"> {% endcomment %}
-								{% comment %} <div class="btn-group btn-group-toggle" data-toggle="buttons"> {% endcomment %}
-									{% comment %} <label class="btn active"> {% endcomment %}
-										{% comment %} <input type="radio" name="options" id="admin"> {% endcomment %}
-										{% comment %} <div class="icon"><img src="vendors/images/briefcase.svg" class="svg" alt=""></div> {% endcomment %}
-										{% comment %} <div class="icon"><img src="{% static '/images/briefcase.svg' %}" class="svg" alt=""></div> {% endcomment %}
-										{% comment %} <span>I'm</span> {% endcomment %}
-										{% comment %} Manager {% endcomment %}
-									{% comment %} </label> {% endcomment %}
-									{% comment %} <label class="btn"> {% endcomment %}
-										{% comment %} <input type="radio" name="options" id="user"> {% endcomment %}
-										{% comment %} <div class="icon"><img src="vendors/images/person.svg" class="svg" alt=""></div> {% endcomment %}
-										{% comment %} <div class="icon"><img src="{% static '/images/person.svg' %}" class="svg" alt=""></div> {% endcomment %}
-										{% comment %} <span>I'm</span> {% endcomment %}
-										{% comment %} Employee {% endcomment %}
-									{% comment %} </label> {% endcomment %}
-								{% comment %} </div> {% endcomment %}
-							{% comment %} </div> {% endcomment %}
+							<div class="select-role">
+								{% comment %} <div class="btn-group btn-group-toggle" data-toggle="buttons">
+									<label class="btn active">
+										<input type="radio" name="options" id="admin">
+										<div class="icon"><img src="{% static '/images/briefcase.svg' %}" class="svg" alt=""></div>
+										<span>I'm</span>
+										Manager
+									</label>
+									<label class="btn">
+										<input type="radio" name="options" id="user">
+										<div class="icon"><img src="{% static '/images/person.svg' %}" class="svg" alt=""></div>
+										<span>I'm</span>
+										Employee
+									</label>
+								</div> {% endcomment %}
+							</div>
 							<div class="input-group custom">
-								<input type="email" name='email' id='email' class="form-control form-control-lg" placeholder="Email">
+								<input type="email" name="email" class="form-control form-control-lg" placeholder="email">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="icon-copy dw dw-user1"></i></span>
 								</div>
 							</div>
 							<div class="input-group custom">
-								<input type="password" name='password' id='password' class="form-control form-control-lg" placeholder="**********">
+								<input type="password" name="password" class="form-control form-control-lg" placeholder="**********">
 								<div class="input-group-append custom">
 									<span class="input-group-text"><i class="dw dw-padlock1"></i></span>
 								</div>
 							</div>
 							<div class="row pb-30">
-								{% comment %} <div class="col-6"> {% endcomment %}
-									{% comment %} <div class="custom-control custom-checkbox"> {% endcomment %}
-										{% comment %} <input type="checkbox" class="custom-control-input" id="customCheck1"> {% endcomment %}
-										{% comment %} <label class="custom-control-label" for="customCheck1">Remember</label> {% endcomment %}
-									{% comment %} </div> {% endcomment %}
-								{% comment %} </div> {% endcomment %}
+								<div class="col-6">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" id="customCheck1">
+										<label class="custom-control-label" for="customCheck1">Remember</label>
+									</div>
+								</div>
 								<div class="col-6">
 									<div class="forgot-password"><a href="forgot-password.html">Forgot Password</a></div>
 								</div>
@@ -114,15 +112,14 @@
 								<div class="col-sm-12">
 									<div class="input-group mb-0">
 										<!--
-											use code for form submit
+											use code for form submit -->
 											<input class="btn btn-primary btn-lg btn-block" type="submit" value="Sign In">
-										-->
-										{% comment %} <a class="btn btn-primary btn-lg btn-block" href="{% url 'Login' %}">Sign In</a> {% endcomment %}
-										<input type='submit' value='login'>
+										
+										{% comment %} <a class="btn btn-primary btn-lg btn-block" href="index.html">Sign In</a> {% endcomment %}
 									</div>
 									<div class="font-16 weight-600 pt-10 pb-10 text-center" data-color="#707373">OR</div>
 									<div class="input-group mb-0">
-										<a class="btn btn-outline-primary btn-lg btn-block" href="register.html">Register To Create Account</a>
+										<a class="btn btn-outline-primary btn-lg btn-block" href="{% url 'register' %}">Register To Create Account</a>
 									</div>
 								</div>
 							</div>
