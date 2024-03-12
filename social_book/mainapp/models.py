@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from sqlalchemy import create_engine
 from .managers import CustomUserManager
+from django.conf import settings
 engine = create_engine('postgresql://root:root@localhost/king')
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -39,11 +40,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
       return self.emai
         
 class Book(models.Model):
+    user_id = models.IntegerField(null=True)
     title = models.CharField(max_length=100)
     cost=models.IntegerField( blank=True, null=True)  # price of the book
     author = models.CharField(max_length=100)
     file = models.FileField(upload_to='Book/')  # Assuming you want to upload PDF 
     visibility=models.BooleanField(default=True)
-    
+
     def __str__(self):
         return self.title

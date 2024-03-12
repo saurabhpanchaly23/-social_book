@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from mainapp import views
+from mainapp import views as mainapp
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -33,6 +33,8 @@ urlpatterns = [
     path('view_user_books/',views.view_user_books, name='view_user_books'),
     path('fetch_data/',views.fetch_data, name='fetch_data'),
     path('logout/', views.logout_view, name='logout'), 
+    path('verify_otp/',views.verify_otp, name='verify_otp'),
+    #api 
     path('api/', include('api.urls')),
     
 ]

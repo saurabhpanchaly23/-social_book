@@ -5,7 +5,10 @@ from .serializers import UserSerializer, BookSerializer
 from rest_framework.exceptions import AuthenticationFailed
 from mainapp.models import CustomUser, Book
 import jwt, datetime
-from .decorators import login_required
+from rest_framework.parsers import MultiPartParser
+from rest_framework import status
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class RegisterView(APIView):
     def post(self,request):
@@ -36,7 +39,7 @@ class LoginView(APIView):
         return response
     
 class UserView(APIView):
-    @login_required
+    # @login_required
     def get(self, request):
         token = request.COOKIES.get('jwt')
 
@@ -54,7 +57,7 @@ class UserView(APIView):
         return Response(serializer.data)
     
 class BookView(APIView):
-    @login_required
+    # @login_required
     def get(self, request):
         token = request.COOKIES.get('jwt')
         if not token:
@@ -69,3 +72,38 @@ class BookView(APIView):
         Serializer = BookSerializer(book_obj, many=True)
         return Response(Serializer.data)
     
+class BookUploadAPIView(APIView):
+    parser_classes = (MultiPartParser,)
+    def post(self, request, *args, **kwargs):
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!')
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+        except jwt.DecodeError:
+            raise AuthenticationFailed('Invalid token!')
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+class BookListView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        book_obj = Book.objects.all()
+        Serializer = BookSerializer(book_obj, many=True)
+        return(Response({'status':200 ,'payload':Serializer.data}))
+    
+class LogoutView(APIView):
+    def post(self, request):
+        response = Response()
+        response.delete_cookie('jwt')
+        response.data = {
+            'message': 'success'
+        }
+        return response

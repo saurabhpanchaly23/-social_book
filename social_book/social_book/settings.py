@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'rest_framework.authtoken',
+    # 'corsheaders',
 
 ]
 
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'social_book.urls'
@@ -140,6 +142,13 @@ DATABASES= {
     }
 }
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'saurabhpanchaly23@gmail.com'
+EMAIL_HOST_PASSWORD = 'oerc hxdt bygs pdrw'
+
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -189,6 +198,7 @@ LOGIN_URL='/login'
 
 MEDIA_ROOT=BASE_DIR /"media"
 MEDIA_URL="/media/"
-    
+# CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOW_CREDENTIALS = True  
 
 APPEND_SLASH = False
