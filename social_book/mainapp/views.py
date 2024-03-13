@@ -59,7 +59,7 @@ def register(request):
             return redirect('login')  # Redirect to login page
     else:
         form = CustomUserCreationForm()
-    return render(request, 'registration.html'{'form': form})
+    return render(request, 'register.html', {'form': form})
 
 @login_required(    login_url='login')
 def index(request):
