@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-v)8zd^-a=1fq8hehq2(4$db^*)8^%idz%1%zw@!1bjgx_40+ih
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["13.201.39.195"]
 
 # Application definition
 
@@ -123,15 +123,6 @@ SIMPLE_JWT = {
 WSGI_APPLICATION = 'social_book.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES= {
     'default': {
@@ -139,6 +130,7 @@ DATABASES= {
         'NAME': 'king',
         'USER': 'root',
         'PASSWORD': 'root',
+        'host':'13.201.39.195',        
     }
 }
 
@@ -202,3 +194,5 @@ MEDIA_URL="/media/"
 # CORS_ALLOW_CREDENTIALS = True  
 
 APPEND_SLASH = False
+
+CORS_ORIGIN_ALLOW_ALL = True
