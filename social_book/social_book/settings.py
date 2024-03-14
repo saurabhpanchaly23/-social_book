@@ -130,8 +130,7 @@ DATABASES= {
         'NAME': 'king',
         'USER': 'root',
         'PASSWORD': 'root',
-        'HOST': 'localhost',  # or your database host
-        'PORT': '5432',
+        'host':'13.201.39.195',        
     }
 }
 
